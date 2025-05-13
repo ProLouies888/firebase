@@ -1,0 +1,58 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase Login</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <form id="form">
+    <input type="email" id="email" placeholder="Email" required><br><br>
+    <input type="password" id="password" placeholder="Password" required><br><br>
+    <button type="submit">Login</button>
+  </form>
+  <p id="message"></p>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCVLDlhnQE4qogdVnF3TZdF-VC_mQdK6uE",
+    authDomain: "logindb-543c4.firebaseapp.com",
+    databaseURL: "https://logindb-543c4-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "logindb-543c4",
+    storageBucket: "logindb-543c4.firebasestorage.app",
+    messagingSenderId: "933105724056",
+    appId: "1:933105724056:web:f0953859f728fd448cbeed"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+    // Handle form submit
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        // document.getElementById('message').textContent = "Login successful!";
+       alert("Login successful!\nWelcome " + userCredential.user.email);
+      window.open("https://prolouies888.github.io/course/18301.html");  
+
+      } catch (error) {
+        document.getElementById('message').textContent = `Error: ${error.message}`;
+        //alert("Error: " + error.message);
+      }
+    });
+
+</script>
+
+</body>
+</html>
