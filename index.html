@@ -1,18 +1,11 @@
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Firebase Login</title>
-</head>
-<body>
-  <h2>Login</h2>
-  <form id="form">
-    <input type="email" id="email" placeholder="Email" required><br><br>
-    <input type="password" id="password" placeholder="Password" required><br><br>
-    <button type="submit">Login</button>
-  </form>
-  <p id="message"></p>
+<!DOCTYPE html>
 
-<script type="module">
+<html>
+  
+  <head>
+    <base target="_top">
+   
+  <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
@@ -35,25 +28,151 @@
   const auth = getAuth(app);
 
     // Handle form submit
-    document.getElementById('form').addEventListener('submit', async (e) => {
+
+     document.getElementById('form').addEventListener('submit', async (e) => {
       e.preventDefault();
+       
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        // document.getElementById('message').textContent = "Login successful!";
-       alert("Login successful!\nWelcome " + userCredential.user.email);
+        document.getElementById('error').innerText = "Login successful!";
+      //alert("Login successful!\nWelcome " + userCredential.user.email);
       window.open("https://prolouies888.github.io/course/18301.html");  
 
       } catch (error) {
-        document.getElementById('message').textContent = `Error: ${error.message}`;
-        //alert("Error: " + error.message);
+        document.getElementById('error').innerText = `Error: ${error.message}`;
+     
       }
-      this.reset();
-    });
+      
+     setTimeout(function () {
+     form.reset();
+     document.getElementById("error").innerText ="";
+   }, 2000);
 
-</script>
+   });
 
-</body>
+ </script>
+
+
+
+  </head>
+ 
+  <body>
+    <style>
+     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 78vh;
+  padding: 25px;
+  background: #1abc9c;
+  overflow: hidden;
+}
+.wrapper {
+  max-width: 460px;
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+}
+.wrapper .title {
+  height: 70px;
+  background: #16a085;
+  border-radius: 5px 5px 0 0;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper form {
+  padding: 18px 30px 40px 30px;
+}
+.wrapper form .row {
+  height: 30px;
+  margin-top: 10px;
+  position: relative;
+}
+.wrapper form .row input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 75px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+form .row input:focus {
+  border-color: #16a085;
+}
+form .row input::placeholder {
+  color: #999;
+}
+.wrapper form .row i {
+  position: absolute;
+  width: 55px;
+  height: 100%;
+  color: #fff;
+  font-size: 20px;
+  background: #16a085;
+  border: 1px solid #16a085;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+ background: #16a085;
+ color:white;
+ font-size:18px;
+ margin-left:120px;
+ margin-top:48px;
+ height:42px;
+ width:160px;
+ cursor: pointer; 
+}
+.button:hover {background-color: #1abc9c;}
+
+</style>
+      <div class="wrapper">
+         <div class="title">
+            Login Form
+         </div>
+         <form id="form" action="#">
+            <div class="row">
+               <label>Email Address</label>
+               <input type="text" id="email" required>
+              
+            </div>
+            <div class="row" style="margin-top:30px;">
+             
+               <label>Password</label>
+                 <input type="password" id="password" required>
+               
+           
+            </div>
+            
+            <div>
+                
+            <button class="button" type="submit">Login</button>
+            <p id="error" style="color:red;"></p>
+            </div>
+            
+
+         </form>
+      </div>
+   </body>
+    
 </html>
