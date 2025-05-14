@@ -20,7 +20,7 @@
   // https://firebase.google.com/docs/web/setup#available-libraries
 
   // Your web app's Firebase configuration
-  const firebaseConfig = {
+   const firebaseConfig = {
     apiKey: "AIzaSyCVLDlhnQE4qogdVnF3TZdF-VC_mQdK6uE",
     authDomain: "logindb-543c4.firebaseapp.com",
     databaseURL: "https://logindb-543c4-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -35,7 +35,7 @@
   const auth = getAuth(app);
 
     // Handle form submit
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
+    document.getElementById('form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
@@ -50,6 +50,7 @@
         document.getElementById('message').textContent = `Error: ${error.message}`;
         //alert("Error: " + error.message);
       }
+      this.reset();
     });
 
 </script>
